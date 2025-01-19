@@ -1,0 +1,6 @@
+[package]
+name = "heavy_duty_bools"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
