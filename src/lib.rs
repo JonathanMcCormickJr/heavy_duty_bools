@@ -50,6 +50,7 @@ pub fn refresh_hdbool(input_value: u8) -> u8 {
     }
 }
 
+/// Converts a normal boolean to a Heavy Duty Boolean. 
 pub fn convert_bool_to_hdbool(input_bool: bool) -> u8 {
     match input_bool {
         false => u8::MIN,
@@ -97,9 +98,10 @@ mod tests {
 
     #[test]
     fn test_convert_hdbool_to_bool() {
-        assert_eq!(convert_hdbool_to_bool(0b11111111u8), true);
+        assert_eq!(convert_hdbool_to_bool(0b11111111_u8), true);
         assert_eq!(convert_hdbool_to_bool(0b00000000_u8), false);
         assert_eq!(convert_hdbool_to_bool(0b00001111_u8), false);
+        assert_eq!(convert_hdbool_to_bool(0b11110000_u8), false);
     }
 
     #[test]
