@@ -1,7 +1,5 @@
 // lib.rs
 
-
-
 //! Heavy Duty Bools are the beefier cousins of regular `bool` values
 //! in Rust. While both normal bools and Heavy Duty Bools each take up 
 //! only 8 bits of memory, Heavy Duty Bools come with much stronger
@@ -49,7 +47,9 @@ pub const HDFALSE: u8 = 0b_0000_0000_u8;
 /// # Returns
 ///
 /// * `u8::MAX` if `input_value` contains more than 4 `1` bits.
-/// * `u8::MIN` otherwise.
+/// * `u8::MIN` otherwise. Keep in mind, this means that if there is
+///   a tie (exactly four `0`'s and four `1`'s, the value will evaluate
+///   to false).
 pub fn refresh_hdbool(input_value: u8) -> u8 {
     if input_value.count_ones() > 4 {
         u8::MAX
