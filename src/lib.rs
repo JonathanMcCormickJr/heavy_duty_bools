@@ -1,5 +1,7 @@
 // lib.rs
 
+
+
 //! Heavy Duty Bools are the beefier cousins of regular `bool` values
 //! in Rust. While both normal bools and Heavy Duty Bools each take up 
 //! only 8 bits of memory, Heavy Duty Bools come with much stronger
@@ -27,6 +29,12 @@
 //! On the other hand, normal bools don't have any level of inherent 
 //! redundancy, as only the final bit determines the value of their 
 //! entire unit. 
+
+/// Definition of Heavy Duty True
+pub const HDTRUE: u8 = 0b_1111_1111_u8;
+
+/// Definition of Heavy Duty False
+pub const HDFALSE: u8 = 0b_0000_0000_u8;
 
 /// Refreshes the `u8` value based on the density of `1` bits in its 
 /// binary representation in order to reverse the damage of bit flips.
@@ -79,8 +87,13 @@ mod tests {
     fn test_normal_bool_representation() {
         assert_eq!(true as u8, 0b00000001u8);
         assert_eq!(false as u8, 0b00000000u8);
-        assert!(true as u8 != 0b11111111u8);
-        assert!(false as u8 != 0b10000000u8);
+        assert_ne!(true as u8, 0b11111111u8);
+        assert_ne!(false as u8, 0b10000000u8);
+        assert_ne!(true as u8, HDTRUE);
+        assert_ne!(false as u8, HDTRUE);
+        assert_ne!(true as u8, HDFALSE);
+        assert_eq!(false as u8, HDFALSE);  // `HDFALSE`` and `false` happen to share the same byte representation in memory. 
+
     }
 
     #[test]
