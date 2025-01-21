@@ -28,11 +28,54 @@
 //! redundancy, as only the final bit determines the value of their 
 //! entire unit. 
 
+
+#[derive(Debug, Clone, Copy)]
+pub struct HDBool(u8);
+
+impl HDBool {
+    /// Creates an `HDBool` from a normal bool.
+    pub fn new(val: bool) -> Self {
+        HDBool(if val { u8::MAX } else { u8::MIN })
+    }
+
+    /// Creates an `HDBool` from a raw `u8`, refreshing it if it's imperfect.
+    pub fn from_u8(raw: u8) -> Self {
+        HDBool(Self::refresh(raw))
+    }
+
+    /// Extracts the raw `u8` representation (all 1s or all 0s after refresh).
+    pub fn as_u8(&self) -> u8 {
+        self.0
+    }
+
+    /// Returns the normal bool form.
+    pub fn to_bool(&self) -> bool {
+        // any value other than 0xFF or 0x00 is first corrected
+        match self.0 {
+            0xFF => true,
+            0x00 => false,
+            _ => HDBool::refresh(self.0) == u8::MAX,
+        }
+    }
+
+    /// Refresh a raw `u8` into either 0xFF or 0x00.
+    fn refresh(raw: u8) -> u8 {
+        if raw.count_ones() > 4 {
+            u8::MAX
+        } else {
+            u8::MIN
+        }
+    }
+}
+
+
 /// Definition of Heavy Duty True
 pub const HDTRUE: u8 = 0b_1111_1111_u8;
 
 /// Definition of Heavy Duty False
 pub const HDFALSE: u8 = 0b_0000_0000_u8;
+
+
 
 /// Refreshes the `u8` value based on the density of `1` bits in its 
 /// binary representation in order to reverse the damage of bit flips.
