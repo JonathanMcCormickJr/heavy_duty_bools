@@ -68,15 +68,6 @@ impl HDBool {
     }
 }
 
-
-/// Definition of Heavy Duty True
-pub const HDTRUE: u8 = 0b_1111_1111_u8;
-
-/// Definition of Heavy Duty False
-pub const HDFALSE: u8 = 0b_0000_0000_u8;
-
-
-
 /// Refreshes the `u8` value based on the density of `1` bits in its 
 /// binary representation in order to reverse the damage of bit flips.
 /// 
@@ -132,10 +123,10 @@ mod tests {
         assert_eq!(false as u8, 0b00000000u8);
         assert_ne!(true as u8, 0b11111111u8);
         assert_ne!(false as u8, 0b10000000u8);
-        assert_ne!(true as u8, HDTRUE);
-        assert_ne!(false as u8, HDTRUE);
-        assert_ne!(true as u8, HDFALSE);
-        assert_eq!(false as u8, HDFALSE);  // `HDFALSE`` and `false` happen to share the same byte representation in memory. 
+        assert_ne!(true as u8, HDBool::new(true).as_u8());
+        assert_ne!(false as u8, HDBool::new(true).as_u8());
+        assert_ne!(true as u8, HDBool::new(false).as_u8());
+        assert_eq!(false as u8, HDBool::new(false).as_u8());
 
     }
 
@@ -168,10 +159,10 @@ mod tests {
 
     #[test]
     fn test_equality_of_different_representations_for_hdbools() {
-        assert_eq!(HDTRUE, 0b_1111_1111_u8);
-        assert_eq!(HDTRUE, u8::MAX);
-        assert_eq!(HDFALSE, 0b_0000_0000_u8);
-        assert_eq!(HDFALSE, u8::MIN);
+        assert_eq!(HDBool::new(true).as_u8(), 0b_1111_1111_u8);
+        assert_eq!(HDBool::new(true).as_u8(), u8::MAX);
+        assert_eq!(HDBool::new(false).as_u8(), 0b_0000_0000_u8);
+        assert_eq!(HDBool::new(false).as_u8(), u8::MIN);
     }
 
 }
