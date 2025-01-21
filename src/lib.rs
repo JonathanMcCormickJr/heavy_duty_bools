@@ -29,7 +29,7 @@
 //! entire unit. 
 
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HDBool(u8);
 
 impl HDBool {
@@ -128,6 +128,12 @@ mod tests {
         assert_ne!(true as u8, HDBool::new(false).as_u8());
         assert_eq!(false as u8, HDBool::new(false).as_u8());
 
+    }
+
+    #[test]
+    fn test_hdbool() {
+        assert_eq!(HDBool::new(true), HDBool(u8::MAX));
+        // CONTINUE TO TEST ALL THE METHODS HERE
     }
 
     #[test]
