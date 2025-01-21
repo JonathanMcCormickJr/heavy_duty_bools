@@ -123,4 +123,12 @@ mod tests {
         assert_eq!(convert_bool_to_hdbool(true), 0b11111111_u8);
     }
 
+    #[test]
+    fn test_equality_of_different_representations_for_hdbools() {
+        assert_eq!(HDTRUE, 0b_1111_1111_u8);
+        assert_eq!(HDTRUE, u8::MAX);
+        assert_eq!(HDFALSE, 0b_0000_0000_u8);
+        assert_eq!(HDFALSE, u8::MIN);
+    }
+
 }
