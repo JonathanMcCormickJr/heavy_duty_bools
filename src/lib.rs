@@ -128,8 +128,22 @@ mod tests {
         assert_eq!(HDBool::refresh(0b_0000_0111_u8), u8::MIN);
         assert_eq!(HDBool::refresh(0b_1111_0000_u8), u8::MIN);
         assert_eq!(HDBool::refresh(0b_0000_1111_u8), u8::MIN);
+    }
 
+    #[test]
+    fn test_memory_footprint() {
+        assert_eq!(std::mem::size_of::<HDBool>(), 1);
+        assert_eq!(std::mem::size_of::<u8>(), 1);
+        assert_eq!(std::mem::size_of::<bool>(), 1);
+        assert!(std::mem::size_of::<HDBool>() <= std::mem::size_of::<u8>());
 
+        assert_eq!(std::mem::size_of_val(&HDBool::new(true)), 1);
+        assert_eq!(std::mem::size_of_val(&HDBool::new(false)), 1);
+        assert_eq!(std::mem::size_of_val(&HDBool::from_u8(0b_1111_1111_u8)), 1);
+        assert_eq!(std::mem::size_of_val(&HDBool::from_u8(0b_0000_0000_u8)), 1);
+        assert_eq!(std::mem::size_of_val(&HDBool(u8::MAX)), 1);
+        assert_eq!(std::mem::size_of_val(&HDBool(u8::MIN)), 1);
+        assert!(std::mem::size_of_val(&HDBool::new(true)) <= std::mem::size_of_val(&u8::MAX));
     }
 
     #[test]
