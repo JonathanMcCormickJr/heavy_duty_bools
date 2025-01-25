@@ -4,7 +4,7 @@
 
 //! # HDBool
 //! 
-//! Check out the ['HDBool'] struct for more information.
+//! Check out the [HDBool] struct for more information.
 //! 
 
 #[derive(Clone, Copy, Debug, PartialEq)]
