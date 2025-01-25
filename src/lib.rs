@@ -44,6 +44,8 @@ impl HDBool {
 
 #[cfg(test)]
 mod tests {
+    use std::u8;
+
     use super::*;
 
     #[test]
@@ -54,10 +56,14 @@ mod tests {
         assert_ne!(false as u8, 0b_1000_0000_u8);
         assert_ne!(true as u8, 0b_0100_0010_u8);
         assert_ne!(false as u8, 0b_0010_0001_u8);
+
         assert_ne!(true as u8, HDBool::new(true).as_u8());
         assert_ne!(false as u8, HDBool::new(true).as_u8());
         assert_ne!(true as u8, HDBool::new(false).as_u8());
         assert_eq!(false as u8, HDBool::new(false).as_u8());
+        
+        assert!(true);
+        assert!(!false);
     }
 
     #[test]
@@ -82,9 +88,17 @@ mod tests {
         assert_ne!(HDBool(u8::MIN).as_u8(), 0b_1111_1111_u8);
         assert_ne!(HDBool(u8::MAX).as_u8(), HDBool::new(false).as_u8());
         assert_ne!(HDBool(u8::MIN).as_u8(), HDBool::new(true).as_u8());
+
         assert!(HDBool(u8::MAX).to_bool());
         assert!(!HDBool(u8::MIN).to_bool());
-        // CONTINUE TO TEST ALL THE METHODS HERE
+
+        assert_eq!(HDBool(u8::MAX).to_bool(), true);
+        assert_eq!(HDBool(u8::MIN).to_bool(), false);
+        assert_ne!(HDBool(u8::MAX).to_bool(), false);
+        assert_ne!(HDBool(u8::MIN).to_bool(), true);
+        assert_eq!(HDBool(u8::MAX).as_u8(), u8::MAX);
+        assert_eq!(HDBool(u8::MIN).as_u8(), u8::MIN);
+
     }
 
     #[test]
