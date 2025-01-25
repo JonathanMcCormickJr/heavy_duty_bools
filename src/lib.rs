@@ -2,6 +2,11 @@
 
 #![doc = include_str!("../README.md")]
 
+//! # HDBool
+//! 
+//! Check out the ['HDBool'] struct for more information.
+//! 
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HDBool(u8);
 
