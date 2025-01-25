@@ -2,5 +2,11 @@
 name = "heavy_duty_bools"
 version = "0.1.0"
 edition = "2021"
+authors = ["Jonathan A. McCormick, Jr.",]
+license = "MIT"
+homepage = "https://github.com/JonathanMcCormickJr/heavy_duty_bools"
+repository = "https://github.com/JonathanMcCormickJr/heavy_duty_bools"
+documentation = "https://github.com/JonathanMcCormickJr/heavy_duty_bools"
+description = "A library for working with heavy-duty boolean values."
 
 [dependencies]
