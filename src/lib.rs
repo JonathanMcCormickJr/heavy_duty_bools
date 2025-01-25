@@ -61,7 +61,7 @@ mod tests {
         assert_ne!(false as u8, HDBool::new(true).as_u8());
         assert_ne!(true as u8, HDBool::new(false).as_u8());
         assert_eq!(false as u8, HDBool::new(false).as_u8());
-        
+
         assert!(true);
         assert!(!false);
     }
@@ -81,6 +81,8 @@ mod tests {
         assert_eq!(HDBool::from_u8(0b_0000_0000_u8).to_bool(), false);
         assert_eq!(HDBool::from_u8(0b_1111_1111_u8).as_u8(), u8::MAX);
         assert_eq!(HDBool::from_u8(0b_0000_0000_u8).as_u8(), u8::MIN);
+        assert_eq!(HDBool::from_u8(0b_1111_1110_u8).to_bool(), true);
+        assert_eq!(HDBool::from_u8(0b_0000_0001_u8).to_bool(), false);
 
         assert_eq!(HDBool(u8::MAX).as_u8(), 0b_1111_1111_u8);
         assert_eq!(HDBool(u8::MIN).as_u8(), 0b_0000_0000_u8);
@@ -98,6 +100,30 @@ mod tests {
         assert_ne!(HDBool(u8::MIN).to_bool(), true);
         assert_eq!(HDBool(u8::MAX).as_u8(), u8::MAX);
         assert_eq!(HDBool(u8::MIN).as_u8(), u8::MIN);
+
+        assert_ne!(HDBool(HDBool::refresh(0b_1111_1111_u8)).to_bool(), false);
+        assert_ne!(HDBool(HDBool::refresh(0b_0000_0000_u8)).to_bool(), true);
+        assert_eq!(HDBool(HDBool::refresh(0b_1111_1111_u8)).to_bool(), true);
+        assert_eq!(HDBool(HDBool::refresh(0b_0000_0000_u8)).to_bool(), false);
+        assert_eq!(HDBool(HDBool::refresh(0b_1111_1111_u8)).as_u8(), u8::MAX);
+        assert_eq!(HDBool(HDBool::refresh(0b_0000_0000_u8)).as_u8(), u8::MIN);
+        assert_eq!(HDBool(HDBool::refresh(0b_0000_1111_u8)).as_u8(), u8::MIN);
+        assert_eq!(HDBool(HDBool::refresh(0b_1111_0000_u8)).as_u8(), u8::MIN);
+        assert_eq!(HDBool(HDBool::refresh(0b_0000_1111_u8)).to_bool(), false);
+        assert_eq!(HDBool(HDBool::refresh(0b_1111_0000_u8)).to_bool(), false);
+        assert_eq!(HDBool(HDBool::refresh(0b_0100_1111_u8)).to_bool(), true);
+
+        assert_eq!(HDBool::refresh(0b_1111_1111_u8), u8::MAX);
+        assert_eq!(HDBool::refresh(0b_0000_0000_u8), u8::MIN);
+        assert_eq!(HDBool::refresh(0b_1111_1110_u8), u8::MAX);
+        assert_eq!(HDBool::refresh(0b_0000_0001_u8), u8::MIN);
+        assert_eq!(HDBool::refresh(0b_1111_1100_u8), u8::MAX);
+        assert_eq!(HDBool::refresh(0b_0000_0011_u8), u8::MIN);
+        assert_eq!(HDBool::refresh(0b_1111_1000_u8), u8::MAX);
+        assert_eq!(HDBool::refresh(0b_0000_0111_u8), u8::MIN);
+        assert_eq!(HDBool::refresh(0b_1111_0000_u8), u8::MIN);
+        assert_eq!(HDBool::refresh(0b_0000_1111_u8), u8::MIN);
+
 
     }
 
