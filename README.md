@@ -22,7 +22,7 @@ Heavy Duty False: `0b00000000`
 
 With the Heavy Duty version, if I change any bit at random, the 
 system can still figure out which Heavy Duty value the overall 
-value is by calling the [refresh_hdbool()] function. 
+value is by calling the `refresh_hdbool()` function. 
 
 On the other hand, normal bools don't have any level of inherent 
 redundancy, as only the final bit determines the value of their 
