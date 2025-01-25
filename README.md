@@ -34,7 +34,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-heavy_duty_bools = "0.1.0"
+heavy_duty_bools = "[VERSION NUMBER]"
 ```
 
 Add this to your crate root:

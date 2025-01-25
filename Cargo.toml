@@ -1,10 +1,11 @@
 [package]
 name = "heavy_duty_bools"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Jonathan A. McCormick, Jr.",]
 license = "MIT"
 repository = "https://github.com/JonathanMcCormickJr/heavy_duty_bools"
+documentation = "https://docs.rs/heavy_duty_bools"
 description = "A library for working with heavy-duty boolean values."
 
 [dependencies]
