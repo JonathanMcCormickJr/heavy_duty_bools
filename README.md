@@ -27,3 +27,19 @@ value is by calling the `refresh_hdbool()` function.
 On the other hand, normal bools don't have any level of inherent 
 redundancy, as only the final bit determines the value of their 
 entire unit. 
+
+## Installation
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+heavy_duty_bools = "0.1.0"
+```
+
+Add this to your crate root:
+
+```rust
+use heavy_duty_bools::*;
+```
+
