@@ -22,7 +22,7 @@ Heavy Duty False: `0b00000000`
 
 With the Heavy Duty version, if I change any bit at random, the 
 system can still figure out which Heavy Duty value the overall 
-value is by calling the `refresh_hdbool()` function. 
+value is by calling the type-associated function `refresh()`. 
 
 On the other hand, normal bools don't have any level of inherent 
 redundancy, as only the final bit determines the value of their 
@@ -43,3 +43,6 @@ Add this to your crate root:
 use heavy_duty_bools::*;
 ```
 
+## Support and contributions
+
+I'm happy to receive bug reports, suggestions, questions, and other feedback. Please raise an issue or PR on [GitHub](https://github.com/JonathanMcCormickJr/heavy_duty_bools) or reach out on [X/Twitter](https://x.com/Jonathan_M_Jr)
